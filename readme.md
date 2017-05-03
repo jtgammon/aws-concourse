@@ -37,11 +37,20 @@ Before start kicking off the pipeline, there are a few parameters need to be set
 
   ```
   Params:
-    TF_VAR_aws_key_name: XXXXX
-    PEM: "-----BEGIN RSA PRIVATE KEY-----\n
-    -----END RSA PRIVATE KEY-----"    
+    TF_VAR_aws_key_name: XXXXX   
   ```
-
+  
+* Create two versions of the PEM key, one in which each line of the file terminates with `\n`, and one in which each line of the file terminates with `\n\n`
+  ```
+  Params:
+    PEM_ESCAPED: "-----BEGIN RSA PRIVATE KEY-----\nMIIEowIBAAKCAQEAnamCGtfxkvcpokWqEs/aNhWwoG7JEMprDIypPm9VdCWZKrN1ptRcpSEK0BOx\nAmB7K5gRA5QZ7emfOWRBX+rMzns9yLD7f4he2JhHgDyHbE8zst6vryoW2pl+kaZ2VKArKAU5r7uD\n
+    ...
+    -----END RSA PRIVATE KEY-----"    
+    
+    PEM_DOUBLE_ESCAPED: "-----BEGIN RSA PRIVATE KEY-----\\nMIIEowIBAAKCAQEAnamCGtfxkvcpokWqEs/aNhWwoG7JEMprDIypPm9VdCWZKrN1ptRcpSEK0BOx\\nAmB7K5gRA5QZ7emfOWRBX+rMzns9yLD7f4he2JhHgDyHbE8zst6vryoW2pl+kaZ2VKArKAU5r7uD\\n
+    ...
+    -----END RSA PRIVATE KEY-----" 
+  ```
 
 * Versioned s3 bucket to store terraform state files.
 
